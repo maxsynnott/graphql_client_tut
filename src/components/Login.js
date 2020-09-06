@@ -3,7 +3,6 @@ import { setToken } from "../token";
 
 import gql from "graphql-tag";
 import { useMutation } from "urql";
-import { setToken } from "../token";
 
 const SIGNUP_MUTATION = gql`
 	mutation SignupMutation($email: String!, $password: String!, $name: String!) {
@@ -77,8 +76,8 @@ const Login = (props) => {
 				<button
 					type="button"
 					className="pointer mr2 button"
-					disabled={state.fetching}
-					onClick={mutate}
+					disabled={mutationState.fetching}
+					onClick={submit}
 				>
 					{isLogin ? "login" : "create account"}
 				</button>
@@ -87,7 +86,7 @@ const Login = (props) => {
 					type="button"
 					className="pointer button"
 					onClick={() => setIsLogin(!isLogin)}
-					disabled={state.fetching}
+					disabled={mutationState.fetching}
 				>
 					{isLogin ? "need to create an account?" : "already have an account?"}
 				</button>
